@@ -20,3 +20,4 @@ class Message_Builder:
         self.__From = Time
     def build(self):
         return Message(self.__Text,self.__From,self.__To,self.__Time)
+    
