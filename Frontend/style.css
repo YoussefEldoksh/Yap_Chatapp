@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+
+
 body {
     background-color: midnightblue;
+    background-image: url("send.png");
+    background-repeat: repeat;
 }
 
 .SendMessage {
@@ -9,8 +15,8 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #2a2a31;
-    border: none;
+    background-color: transparent;
+    border: none;   
     cursor: pointer;
     border-radius: 20%;  /* Makes it circular */
     
@@ -23,7 +29,7 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    top: 0;background-image: url("send.png");
+    top: 0;
     bottom: 0;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -447,10 +453,11 @@ body {
 
   .Chat_Container {
     background-color: #6f14cb;
-    width: 1000px;
+    width: 1050px;
     height: 500px;
-    transform: translateX(45%) translateY(7%);
+    transform: translateX(42%) translateY(7%);
     border-radius: 5%;
+    
   }
 
 
@@ -458,6 +465,79 @@ body {
     background-color: #5106a1;
     width: 28%;
     min-height: 600px;
-    transform: translateX(2%) translateY(-500px);
+    transform: translateX(2%) translateY(-460px);
     border-radius: 5%;
+    background-image: url("send.png");
+    background-repeat: repeat;
   }
+
+  .Friends_Container  .Friends_Container_Title {
+    transform: translateX(10%) translateY(35%); 
+    font-family:"Audiowide", sans-serif;
+    font-size: 25px;
+    background: linear-gradient(90deg, #ff8f7e, #ffd867, #ec526b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    border-right: 3px solid;
+    /* border-image: linear-gradient(90deg, #ff8f7e, #ffd867, #ec526b); */
+    white-space: nowrap;
+    overflow: hidden;
+    width: 20%;
+    animation: 
+        typing 2s infinite ,
+        cursor .4s step-end infinite alternate,
+        border-glow 2s linear infinite;
+  }
+
+ .Friends_Container .search {
+     display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: 28px;
+    background: #25262b;
+    cursor: text;
+    width: 100%; /* Ensures proper width */
+    max-width: 350px; /* Limits width for responsiveness */
+    transform: translateX(1%);
+}
+
+.Friends_Container .search:focus-within {
+    cursor: text;
+}
+.Friends_Container .search .search-icon {
+    color: #7a7d87;
+    font-size: 20px;
+}
+.Friends_Container .search .search-input {
+    width: 100%; /* Fixes width issue */
+    height: 28px;
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    font-family: "Arial", sans-serif;
+    outline: none;
+    cursor: text; /* Important: Allows typing */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.Friends_Container .search .search-input::placeholder {
+    color: #7a7d87;
+    opacity: 0.7;
+}
+  @keyframes cursor {
+    80% { border-color: transparent;}
+  } 
+
+  @keyframes typing {
+    from {width: 0%;};
+    to { width: 20%; }
+  }
+
+  @keyframes border-glow {
+    0% { border-right-color: #ff8f7e; }
+    50% { border-right-color: #ffd867; }
+    100% { border-right-color: #ec526b; }
+}
