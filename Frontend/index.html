@@ -4,9 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Simple Chat</title>
+    <link rel="icon" type="image/png" href="send.png">
+
+    <title>ChatApp</title>
 </head>
 <body>
+    <div class="grid">
+        <div class="area"></div>
+        <div class="area"></div>
+        <div class="area"></div>
+        <div class="area"></div>
+        <div class="area"></div>
+        <div class="area"></div>
+        <div class="area"></div>
+        <div class="area"></div>
+        <div class="area"></div>
+        <div class="area"></div>
+        <div class="area"></div>
+        <div class="area"></div>
+        <div class="area"></div>
+        <div class="area"></div>
+        <div class="area"></div>
+        <div class="wrap">
+          <div class="card">
+            <div class="glow-out1"></div>
+            <div class="glow-out2"></div>
+            <div class="glow"></div>
+            <div class="glow-in1"></div>
+            <div class="glow-in2"></div>
+            <div class="card-bg"></div>
+            <div class="card-content">
+              <div class="glare"></div>
+              <div class="input-area">
+                <input class="mic-toggle" id="mic-toggle" type="checkbox" />
+                <input
+                  placeholder="Say Something"
+                  class="ai-input"
+                  type="text"
+                />
+                <input type="button" name="Send" id="SendButton" class="SendMessage">
+                <label class="mic-icon" for="mic-toggle">
+                  <svg
+                    class="mic-svg"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <defs>
+                      <linearGradient y2="1" y1="0" x2="0" x1="0" id="mic-gradient">
+                        <stop stop-color="#ffd867" offset="0%"></stop>
+                        <stop stop-color="#ec526b" offset="70%"></stop>
+                      </linearGradient>
+                    </defs>
+                    <path
+                      d="M12 2a3 3 0 0 0-3 3v7a3 3 0 1 0 6 0V5a3 3 0 0 0-3-3zM5 12a1 1 0 1 1 2 0 5 5 0 0 0 10 0 1 1 0 1 1 2 0 7.001 7.001 0 0 1-6 6.93V21a1 1 0 1 1-2 0v-2.07A7.001 7.001 0 0 1 5 12z"
+                      fill="url(#mic-gradient)"
+                    ></path>
+                  </svg>                
+                </label>
+                <div class="wave-area">
+                  <span style="--i: 1" class="wave-bar"></span>
+                  <span style="--i: 2" class="wave-bar"></span>
+                  <span style="--i: 3" class="wave-bar"></span>
+                  <span style="--i: 4" class="wave-bar"></span>
+                  <span style="--i: 5" class="wave-bar"></span>
+                </div>
 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="Chat_Container">
+      </div>
+
+      <div class="Friends_Container">
+      </div>
 </body>
 </html>
