@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    <head>
+      <meta charset="UTF-8">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/Signin_Style.css') }}">
+      <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/send.png') }}">
+    </head>
+    <body>
+         <div class="login">
+            <div class="form">
+              <h2>Welcome, We Missed You!</h2>
+              <form method="POST">
+                <input type="text" name="username" placeholder="Username">
+                <input type="password" name="password" placeholder="Password">
+                <input type="submit" value="Sign In" class="submit">
+            </form>
+            </div>
+          </div>
+
+  
+    </body>
+</html>
