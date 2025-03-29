@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="send.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/send.png') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
 
     <title>ChatApp</title>
@@ -36,14 +36,16 @@
             <div class="card-bg"></div>
             <div class="card-content">
               <div class="glare"></div>
+              <form method="POST" id="messageForm">
               <div class="input-area">
                 <input class="mic-toggle" id="mic-toggle" type="checkbox" />
                 <input
                   placeholder="Say Something"
                   class="ai-input"
                   type="text"
-                />
-                <input type="button" name="Send" id="SendButton" class="SendMessage">
+                  name="message"
+                  />
+                <input type="submit" name="Send" id="SendButton" class="SendMessage" value="">
                 <label class="mic-icon" for="mic-toggle">
                   <svg
                     class="mic-svg"
@@ -63,6 +65,8 @@
                     ></path>
                   </svg>                
                 </label>
+              </form>
+
                 <div class="wave-area">
                   <span style="--i: 1" class="wave-bar"></span>
                   <span style="--i: 2" class="wave-bar"></span>
@@ -70,8 +74,8 @@
                   <span style="--i: 4" class="wave-bar"></span>
                   <span style="--i: 5" class="wave-bar"></span>
                 </div>
-
               </div>
+
             </div>
           </div>
         </div>
@@ -80,9 +84,12 @@
 
       <div class="Friends_Container">
         <h2 class="Friends_Container_Title">Chats</h2>
-    <div class="search">
-        <span class="search-icon material-symbols-outlined">search</span>
-        <input type="text" class="search-input" placeholder="Search for a friend    " id="Search_me" name="Search_me_Search">
+    <div  id="searchForm" class="search">
+           <span class="search-icon material-symbols-outlined" id="searchButton">search</span>
+        <form method="POST" id="searchForm">
+          <input type="text" class="search-input" placeholder="Search for a friend" name="Search_me_Search">
+        </form>
+      
     </div>
     </div>
 

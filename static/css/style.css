@@ -4,7 +4,7 @@
 
 body {
     background-color: midnightblue;
-    background-image: url("send.png");
+    background-image: url("../images/send.png");
     background-repeat: repeat;
     display: flex;
     justify-content: flex-start; /* Aligns items from the left */
@@ -16,7 +16,7 @@ body {
 }
 
 .SendMessage {
-    background-image: url("send.png");
+    background-image: url("../images/send.png");
     width: 28px;  /* Adjust size as needed */
     height: 28px;
     background-size: cover;
@@ -532,8 +532,9 @@ body {
     width: 28%;
     min-height: 620px;
     border-radius: 5%;
-    background-image: url("send.png");
+    background-image: url("../images/send.png");
     background-repeat: repeat;
+    margin-left: 35px;
   }
 
   .Friends_Container  .Friends_Container_Title {
