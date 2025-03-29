@@ -5,6 +5,7 @@
 
   body {
     background:rgb(59, 43, 81);
+    transform: scale(1.03);
   }
   .login {
     width: 320px;
@@ -68,6 +69,22 @@
   } 
 
   .login .form input.submit:hover {
+    color: #DDD;
+    transform: scale(1.05); 
+    transition: transform 0.7s ease; 
+   
+  }
+
+  .login .form input.goto {
+    background: rgba(37, 32, 50, 0.9);
+    color: rgba(255,255,255,.5);
+    font-size: 15px;
+    margin-top: 15px;
+    font-weight: bold;
+    cursor: pointer;  
+  }
+
+  .login .form input.goto:hover {
     color: #DDD;
     transform: scale(1.05); 
     transition: transform 0.7s ease; 

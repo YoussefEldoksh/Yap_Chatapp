@@ -12,14 +12,12 @@
          <div class="login">
             <div class="form">
               <h2>Welcome, We Missed You!</h2>
-              <form method="POST" id="sigin_button">
+              <form method="POST">
                 <input type="text" name="username" placeholder="Username">
+                <input type="text" name="email" placeholder="Email">
                 <input type="password" name="password" placeholder="Password">
-                <input type="submit" value="Sign In" class="submit">
+                <input type="submit" value="Sign Up" class="submit">
             </form>
-            <form method="POST" action="{{ url_for('auth.signup') }}" id="signup_redirect">
-              <input type="submit" value="Sign Up" class="goto">
-          </form>
             </div>
           </div>
 
