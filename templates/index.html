@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/send.png') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>ChatApp</title>
 </head>
@@ -38,12 +39,15 @@
               <div class="glare"></div>
               <form method="POST" id="messageForm">
               <div class="input-area">
+
                 <input class="mic-toggle" id="mic-toggle" type="checkbox" />
                 <input
                   placeholder="Say Something"
                   class="ai-input"
                   type="text"
                   name="message"
+                  id="message-input"  
+                  required
                   />
                 <input type="submit" name="Send" id="SendButton" class="SendMessage" value="">
                 <label class="mic-icon" for="mic-toggle">
@@ -93,11 +97,51 @@
     </div>
     </div>
 
-      <div class="Chat_Container">
+      <div class="chat_Container" >
+        <div class="messages"  id="chat-container">
+          {% for msg in messages %}
+          <div class="message-bubble">
+              <p>{{ msg.text }}</p>
+              <small>{{ msg.timestamp.strftime('%H:%M:%S') }}</small>
+          </div>
+      {% endfor %}  
+  
+      </div>
 
       </div>
 
-
+      <script>
+        document.getElementById("messageForm").addEventListener("submit", function(event) {
+            event.preventDefault();  // Prevent page refresh
+    
+            let messageInput = document.getElementById("message-input");
+            let messageText = messageInput.value.trim();
+            if (messageText === "") return;  // Prevent empty messages
+    
+            fetch("/home", {
+                method: "POST",
+                body: new URLSearchParams({ message: messageText }),
+                headers: { "Content-Type": "application/x-www-form-urlencoded" }
+            })
+            .then(response => response.json())
+            .then(data => {
+                let chatContainer = document.getElementById("chat-container");
+    
+                // Create message bubble dynamically
+                let newMessage = document.createElement("div");
+                newMessage.classList.add("message-bubble");
+                newMessage.innerHTML = `<p>${data.text}</p><small>${data.timestamp}</small>`;
+    
+                chatContainer.appendChild(newMessage);
+    
+                // Auto-scroll to the latest message
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+    
+                messageInput.value = ""; // Clear input after sending
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    </script>
 
 
 </body>
