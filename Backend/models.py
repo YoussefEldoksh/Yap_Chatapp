@@ -12,24 +12,24 @@ class Message(database.Model):
     receiver = database.relationship("User", foreign_keys=[receiver_id], backref="received_messages")
 
 
-    def __init__(self, text, sender, receiver, timestamp):
+    def __init__(self, text, sender_id, receiver_id, timestamp):
         self.text = text
-        self.sender = sender
-        self.receiver = receiver
+        self.sender_id = sender_id
+        self.receiver_id = receiver_id
         self.timestamp = timestamp 
 
     def get_text(self):
-        return self.__text
+        return self.text
 
     def get_sender(self):
-        return self.__sender
+        return self.sender
 
     def get_receiver(self):
-        return self.__receiver
+        return self.receiver
 
     def get_timestamp(self):
-        return self.__timestamp
-
+        return self.timestamp
+ 
 class User(database.Model, UserMixin):
     id = database.Column(database.Integer, primary_key=True)
     email = database.Column(database.String(150), unique=True)
@@ -38,4 +38,5 @@ class User(database.Model, UserMixin):
 
     messages_sent = database.relationship('Message', foreign_keys='Message.sender_id', backref='author')
     messages_received = database.relationship('Message', foreign_keys='Message.receiver_id', backref='recipient')
+
 

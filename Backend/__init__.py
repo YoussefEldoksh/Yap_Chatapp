@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from os import path
 
 database = SQLAlchemy() #database object
 DATABASE_NAME =  "database.db"
@@ -21,5 +22,6 @@ def create_app():
 
 def create_database(app):
     if not path.exists('Backend/' + DATABASE_NAME):
-        database.create_all(app=app)
+        with app.app_context():
+         database.create_all()
         print("CREATED DATABSE!")
