@@ -2,12 +2,14 @@ from . import database
 from flask_login import UserMixin
 
 class Message(database.Model):
+    # class attributes define the columns of the messages table for each message created
     id = database.Column(database.Integer, primary_key=True)
-    text = database.Column(database.String(500), nullable=False)
+    text = database.Column(database.String(100000), nullable=False)
     sender_id = database.Column(database.Integer, database.ForeignKey('user.id'), nullable=False)
     receiver_id = database.Column(database.Integer, database.ForeignKey('user.id'), nullable=False)
     timestamp = database.Column(database.DateTime(timezone = True), nullable=False)
 
+    
     sender = database.relationship("User", foreign_keys=[sender_id], backref="sent_messages")
     receiver = database.relationship("User", foreign_keys=[receiver_id], backref="received_messages")
 
@@ -30,11 +32,19 @@ class Message(database.Model):
     def get_timestamp(self):
         return self.timestamp
  
+
+
 class User(database.Model, UserMixin):
     id = database.Column(database.Integer, primary_key=True)
     email = database.Column(database.String(150), unique=True)
     password = database.Column(database.String(150))
     username = database.Column(database.String(150))
+
+    def __init__(self,email,password,username):
+        self.email = email
+        self.password = password
+        self.username = username
+
 
     messages_sent = database.relationship('Message', foreign_keys='Message.sender_id', backref='author')
     messages_received = database.relationship('Message', foreign_keys='Message.receiver_id', backref='recipient')

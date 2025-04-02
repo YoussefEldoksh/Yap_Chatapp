@@ -18,8 +18,7 @@ class Message_Builder:
     def set_To(self,To):
         self.__To = To
         return self
-    def set_Time(self,TimeStramp):
-        self.__From = TimeStramp
+
     def build(self):
         return Message(self.__Text,self.__From,self.__To,self.__TimeStamp)
     

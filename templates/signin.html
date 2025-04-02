@@ -13,11 +13,11 @@
             <div class="form">
               <h2>Welcome, We Missed You!</h2>
               <form method="POST" id="sigin_button">
-                <input type="text" name="username" placeholder="Username">
-                <input type="password" name="password" placeholder="Password">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
                 <input type="submit" value="Sign In" class="submit">
             </form>
-            <form method="POST" action="{{ url_for('auth.signup') }}" id="signup_redirect">
+            <form method="GET" action="{{ url_for('auth.signup') }}" id="signup_redirect">
               <input type="submit" value="Sign Up" class="goto">
           </form>
             </div>
