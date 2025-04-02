@@ -1,148 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/send.png') }}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>ChatApp</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/send.png') }}">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+  <title>ChatApp</title>
 </head>
+
 <body>
-    <div class="grid">
-        <div class="area"></div>
-        <div class="area"></div>
-        <div class="area"></div>
-        <div class="area"></div>
-        <div class="area"></div>
-        <div class="area"></div>
-        <div class="area"></div>
-        <div class="area"></div>
-        <div class="area"></div>
-        <div class="area"></div>
-        <div class="area"></div>
-        <div class="area"></div>
-        <div class="area"></div>
-        <div class="area"></div>
-        <div class="area"></div>
-        <div class="wrap">
-          <div class="card">
-            <div class="glow-out1"></div>
-            <div class="glow-out2"></div>
-            <div class="glow"></div>
-            <div class="glow-in1"></div>
-            <div class="glow-in2"></div>
-            <div class="card-bg"></div>
-            <div class="card-content">
-              <div class="glare"></div>
-              <form method="POST" id="messageForm">
-              <div class="input-area">
+  <div class="grid">
+    <div class="area"></div>
+    <div class="area"></div>
+    <div class="area"></div>
+    <div class="area"></div>
+    <div class="area"></div>
+    <div class="area"></div>
+    <div class="area"></div>
+    <div class="area"></div>
+    <div class="area"></div>
+    <div class="area"></div>
+    <div class="area"></div>
+    <div class="area"></div>
+    <div class="area"></div>
+    <div class="area"></div>
+    <div class="area"></div>
+    <div class="wrap">
+      <div class="card">
+        <div class="glow-out1"></div>
+        <div class="glow-out2"></div>
+        <div class="glow"></div>
+        <div class="glow-in1"></div>
+        <div class="glow-in2"></div>
+        <div class="card-bg"></div>
+        <div class="card-content">
+          <div class="glare"></div>
+          <form method="POST" id="messageForm">
+            <div class="input-area">
 
-                <input class="mic-toggle" id="mic-toggle" type="checkbox" />
-                <input
-                  placeholder="Say Something"
-                  class="ai-input"
-                  type="text"
-                  name="message"
-                  id="message-input"  
-                  required
-                  />
-                <input type="submit" name="Send" id="SendButton" class="SendMessage" value="">
-                <label class="mic-icon" for="mic-toggle">
-                  <svg
-                    class="mic-svg"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <defs>
-                      <linearGradient y2="1" y1="0" x2="0" x1="0" id="mic-gradient">
-                        <stop stop-color="#ffd867" offset="0%"></stop>
-                        <stop stop-color="#ec526b" offset="70%"></stop>
-                      </linearGradient>
-                    </defs>
-                    <path
-                      d="M12 2a3 3 0 0 0-3 3v7a3 3 0 1 0 6 0V5a3 3 0 0 0-3-3zM5 12a1 1 0 1 1 2 0 5 5 0 0 0 10 0 1 1 0 1 1 2 0 7.001 7.001 0 0 1-6 6.93V21a1 1 0 1 1-2 0v-2.07A7.001 7.001 0 0 1 5 12z"
-                      fill="url(#mic-gradient)"
-                    ></path>
-                  </svg>                
-                </label>
-              </form>
+              <input class="mic-toggle" id="mic-toggle" type="checkbox" />
+              <input placeholder="Say Something" class="ai-input" type="text" name="message" id="message-input"
+                required />
+              <input type="submit" name="Send" id="SendButton" class="SendMessage" value="">
+              <label class="mic-icon" for="mic-toggle">
+                <svg class="mic-svg" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient y2="1" y1="0" x2="0" x1="0" id="mic-gradient">
+                      <stop stop-color="#ffd867" offset="0%"></stop>
+                      <stop stop-color="#ec526b" offset="70%"></stop>
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M12 2a3 3 0 0 0-3 3v7a3 3 0 1 0 6 0V5a3 3 0 0 0-3-3zM5 12a1 1 0 1 1 2 0 5 5 0 0 0 10 0 1 1 0 1 1 2 0 7.001 7.001 0 0 1-6 6.93V21a1 1 0 1 1-2 0v-2.07A7.001 7.001 0 0 1 5 12z"
+                    fill="url(#mic-gradient)"></path>
+                </svg>
+              </label>
+          </form>
 
-                <div class="wave-area">
-                  <span style="--i: 1" class="wave-bar"></span>
-                  <span style="--i: 2" class="wave-bar"></span>
-                  <span style="--i: 3" class="wave-bar"></span>
-                  <span style="--i: 4" class="wave-bar"></span>
-                  <span style="--i: 5" class="wave-bar"></span>
-                </div>
-              </div>
-
-            </div>
+          <div class="wave-area">
+            <span style="--i: 1" class="wave-bar"></span>
+            <span style="--i: 2" class="wave-bar"></span>
+            <span style="--i: 3" class="wave-bar"></span>
+            <span style="--i: 4" class="wave-bar"></span>
+            <span style="--i: 5" class="wave-bar"></span>
           </div>
         </div>
+
       </div>
+    </div>
+  </div>
+  </div>
 
 
-      <div class="Friends_Container">
-        <h2 class="Friends_Container_Title">Chats</h2>
-    <div  id="searchForm" class="search">
-           <span class="search-icon material-symbols-outlined" id="searchButton">search</span>
-        <form method="POST" id="searchForm">
-          <input type="text" class="search-input" placeholder="Search for a friend" name="Search_me_Search">
-        </form>
+  <div class="Friends_Container">
+    <h2 class="Friends_Container_Title">Chats</h2>
+    <div id="searchForm" class="search">
+      <form method="POST" id="searchForm">
+        <span class="search-icon material-symbols-outlined" id="searchButton">search</span>
+        <input type="text" class="search-input" placeholder="Search for a friend" name="Search_me_Search">
+      </form>
+    </div>
+
+    <!-- From Uiverse.io by Siyu1017 --> 
+<div class="friend_card">
+  <div class="friend_messages">
+    <div class="friend_message">
+      <div class="friend_message-icon"></div>
+      <div class="friend_message-info">
+        <div class="friend_message-header">
+          <div class="friend_message-title">Uiverse</div>
+          <div class="friend_message-time">1m ago</div>
+        </div>
+        <div class="friend_message-content">Message</div>
+      </div>
+    </div>
+    <div class="friend_message">
+      <div class="friend_message-icon"></div>
+      <div class="friend_message-info">
+        <div class="friend_message-header">
+          <div class="friend_message-title">Uiverse</div>
+          <div class="friend_message-time">1m ago</div>
+        </div>
+        <div class="friend_message-content">Message</div>
+      </div>
+    </div>
+    <div class="friend_message">
+      <div class="friend_message-icon"></div>
+      <div class="friend_message-info">
+        <div class="friend_message-header">
+          <div class="friend_message-title">Uiverse</div>
+          <div class="friend_message-time">1m ago</div>
+        </div>
+        <div class="friend_message-content">Message</div>
+      </div>
+    </div>
+    <div class="friend_message">
+      <div class="friend_message-icon"></div>
+      <div class="friend_message-info">
+        <div class="friend_message-header">
+          <div class="friend_message-title">Uiverse</div>
+          <div class="friend_message-time">1m ago</div>
+        </div>
+        <div class="friend_message-content">Message</div>
+      </div>
+    </div>
+    <div class="friend_message">
+      <div class="friend_message-icon"></div>
+      <div class="friend_message-info">
+        <div class="friend_message-header">
+          <div class="friend_message-title">Uiverse</div>
+          <div class="friend_message-time">1m ago</div>
+        </div>
+        <div class="friend_message-content">Message</div>
+      </div>
+    </div>
+    <div class="friend_message">
+      <div class="friend_message-icon"></div>
+      <div class="friend_message-info">
+        <div class="friend_message-header">
+          <div class="friend_message-title">Uiverse</div>
+          <div class="friend_message-time">1m ago</div>
+        </div>
+        <div class="friend_message-content">Message</div>
+      </div>
+    </div>
+    <div class="friend_message">
+      <div class="friend_message-icon"></div>
+      <div class="friend_message-info">
+        <div class="friend_message-header">
+          <div class="friend_message-title">Uiverse</div>
+          <div class="friend_message-time">1m ago</div>
+        </div>
+        <div class="friend_message-content">Message</div>
+      </div>
+    </div>
+    <div class="friend_message">
+      <div class="friend_message-icon"></div>
+      <div class="friend_message-info">
+        <div class="friend_message-header">
+          <div class="friend_message-title">Uiverse</div>
+          <div class="friend_message-time">1m ago</div>
+        </div>
+        <div class="friend_message-content">Message</div>
+      </div>
+    </div>
+    <div class="friend_message">
+      <div class="friend_message-icon"></div>
+      <div class="friend_message-info">
+        <div class="friend_message-header">
+          <div class="friend_message-title">Uiverse</div>
+          <div class="friend_message-time">1m ago</div>
+        </div>
+        <div class="friend_message-content">Message</div>
+      </div>
+    </div>
+    <div class="friend_message">
+      <div class="friend_message-icon"></div>
+      <div class="friend_message-info">
+        <div class="friend_message-header">
+          <div class="friend_message-title">Uiverse</div>
+          <div class="friend_message-time">1m ago</div>
+        </div>
+        <div class="friend_message-content">Message</div>
+      </div>
+    </div>
+    <div class="friend_message">
+      <div class="friend_message-icon"></div>
+      <div class="friend_message-info">
+        <div class="friend_message-header">
+          <div class="friend_message-title">Uiverse</div>
+          <div class="friend_message-time">1m ago</div>
+        </div>
+        <div class="friend_message-content">Message</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div>
+
+  <div class="chat_Container">
+    <div class="nav-bar">
+      <div class="close">
+        <div class="line one"></div>
+        <div class="line two"></div>
+      </div>
+    </div>
+    <div class="messages-area">
+
+      <div class="message one"></div>
+      <div class="message two"></div>
+      <div class="message three"></div>
+      <div class="message four"></div>
+      <div class="message five"></div>
+      <div class="message six"></div>
+      <div class="message seven"></div>
+      <div class="message eight"></div>
+      <div class="message nine"></div>
+      <div class="message ten"></div>
+      <div class="message eleven"></div>
+    </div>
+    <div class="messages" id="chat-container">
+      {% for msg in messages %}
+      <div class="message-bubble">
+        <p>{{ msg.text }}</p>
+        <small>{{ msg.timestamp.strftime('%H:%M:%S') }}</small>
+      </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+  <div class="profile">
+    <button class="value">
+      <svg xmlns="http://www.w3.org/2000/svg" height="12px" width="38px" viewBox="0 -960 960 960" fill="#F3F3F3">
+        <path
+          d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
+      </svg>
       
-    </div>
-    </div>
+    </button>
+    <button class="value">
+      <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+        viewBox="0 0 100 58" version="1.1">
+        <g>
+          <circle r="13.5" fill="currentColor" cy="13.5" cx="31.452"></circle>
+          <path fill="currentColor"
+            d="M32.153,56.771c2.661-10.485,7.516-19.379,13.92-25.685c-0.039-0.027-0.077-0.059-0.116-0.086h-29.01   C9.134,36.436,3.011,46.132,0,58h31.841L32.153,56.771z">
+          </path>
+          <g>
+            <circle r="13.5" fill="currentColor" cy="13.5" cx="68.452"></circle>
+            <path fill="currentColor"
+              d="M82.957,31h-29.01C46.134,36.436,40.011,46.132,37,58h62.904C96.894,46.132,90.771,36.436,82.957,31z">
+            </path>
+          </g>
+        </g>
+      </svg>
+    </button>
+    <button class="value">
+      <svg viewBox="0 0 24 24" class="normal">
+        <path
+          d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10M10,22C9.75,22 9.54,21.82 9.5,21.58L9.13,18.93C8.5,18.68 7.96,18.34 7.44,17.94L4.95,18.95C4.73,19.03 4.46,18.95 4.34,18.73L2.34,15.27C2.21,15.05 2.27,14.78 2.46,14.63L4.57,12.97L4.5,12L4.57,11L2.46,9.37C2.27,9.22 2.21,8.95 2.34,8.73L4.34,5.27C4.46,5.05 4.73,4.96 4.95,5.05L7.44,6.05C7.96,5.66 8.5,5.32 9.13,5.07L9.5,2.42C9.54,2.18 9.75,2 10,2H14C14.25,2 14.46,2.18 14.5,2.42L14.87,5.07C15.5,5.32 16.04,5.66 16.56,6.05L19.05,5.05C19.27,4.96 19.54,5.05 19.66,5.27L21.66,8.73C21.79,8.95 21.73,9.22 21.54,9.37L19.43,11L19.5,12L19.43,13L21.54,14.63C21.73,14.78 21.79,15.05 21.66,15.27L19.66,18.73C19.54,18.95 19.27,19.04 19.05,18.95L16.56,17.95C16.04,18.34 15.5,18.68 14.87,18.93L14.5,21.58C14.46,21.82 14.25,22 14,22H10M11.25,4L10.88,6.61C9.68,6.86 8.62,7.5 7.85,8.39L5.44,7.35L4.69,8.65L6.8,10.2C6.4,11.37 6.4,12.64 6.8,13.8L4.68,15.36L5.43,16.66L7.86,15.62C8.63,16.5 9.68,17.14 10.87,17.38L11.24,20H12.76L13.13,17.39C14.32,17.14 15.37,16.5 16.14,15.62L18.57,16.66L19.32,15.36L17.2,13.81C17.6,12.64 17.6,11.37 17.2,10.2L19.31,8.65L18.56,7.35L16.15,8.39C15.38,7.5 14.32,6.86 13.12,6.62L12.75,4H11.25Z"
+          fill="currentColor"></path>
+      </svg>
 
-      <div class="chat_Container" >
-        <div class="messages"  id="chat-container">
-          {% for msg in messages %}
-          <div class="message-bubble">
-              <p>{{ msg.text }}</p>
-              <small>{{ msg.timestamp.strftime('%H:%M:%S') }}</small>
-          </div>
-      {% endfor %}  
-  
-      </div>
+    </button>
+  </div>
+  <script>
 
-      </div>
+    const socket = io("http://192.168.1.11:5000");
 
-      <script>
-        document.getElementById("messageForm").addEventListener("submit", function(event) {
-            event.preventDefault();  // Prevent page refresh
-    
-            let messageInput = document.getElementById("message-input");
-            let messageText = messageInput.value.trim();
-            if (messageText === "") return;  // Prevent empty messages
-    
-            fetch("/home", {
-                method: "POST",
-                body: new URLSearchParams({ message: messageText }),
-                headers: { "Content-Type": "application/x-www-form-urlencoded" }
-            })
-            .then(response => response.json())
-            .then(data => {
-                let chatContainer = document.getElementById("chat-container");
-    
-                // Create message bubble dynamically
-                let newMessage = document.createElement("div");
-                newMessage.classList.add("message-bubble");
-                newMessage.innerHTML = `<p>${data.text}</p><small>${data.timestamp}</small>`;
-    
-                chatContainer.appendChild(newMessage);
-    
-                // Auto-scroll to the latest message
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-    
-                messageInput.value = ""; // Clear input after sending
-            })
-            .catch(error => console.error("Error:", error));
-        });
-    </script>
+    socket.on('connect', function () {
+      socket.emit("server_message", "User connected!");
+    });
 
 
-</body>
+    document.getElementById("messageForm").addEventListener("submit", function (event) {
+      event.preventDefault();  // Prevent page refresh
+
+      let messageInput = document.getElementById("message-input");
+      let messageText = messageInput.value.trim();
+      if (messageText === "") return;  // Prevent empty messages
+
+      socket.emit("message", messageText, broadcast=True)
+
+      messageInput.value = "";  // Clear input after sending
+    });
+
+    socket.on("message", function (data) {
+      let chatContainer = document.getElementById("chat-container");
+      let newMessage = document.createElement("div");
+      newMessage.classList.add("message-bubble");
+      newMessage.innerHTML = `<p>${data}</p>`;
+
+      chatContainer.appendChild(newMessage);
+
+      chatContainer.scrollTop = chatContainer.scrollHeight; //scroll down
+
+    });
+  </script>
+
+
+</body> 
+
 </html>

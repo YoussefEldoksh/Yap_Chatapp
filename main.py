@@ -1,9 +1,11 @@
 from Backend import create_app,create_database
+from flask_socketio import SocketIO,send
 
-app = create_app()
+
+app ,socketio= create_app()
 
 if __name__ == '__main__': #this says that only if we run this file not import it run what's inside
     create_database(app)
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    socketio.run(app,debug=True,host='0.0.0.0', port=5000)
 
 # this is the entry point to the website
