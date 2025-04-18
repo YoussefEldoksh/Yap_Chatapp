@@ -508,7 +508,7 @@ body {
 .chat_Container {
   width: 840px;
   height: 520px;
-  background-color: #2d0655;
+  background-color: #2d0655d1;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -531,8 +531,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: left;
-  position: relative; /* Position it relative to the nearest positioned ancestor */
-  top: 15px; /* Align to the top */
+  position: relative;
+  /* Position it relative to the nearest positioned ancestor */
+  top: 15px;
+  /* Align to the top */
   left: 780px;
   cursor: pointer;
 }
@@ -574,7 +576,7 @@ body {
 .message.seven,
 .message.nine,
 .message.eleven {
-  background-color: #200936;
+  background-color: #200936d1;
 }
 
 .message.two,
@@ -582,7 +584,7 @@ body {
 .message.six,
 .message.eight,
 .message.ten {
-  background-color: #1a062c;
+  background-color: #1a062cd8;
 }
 
 .message-bubble {
@@ -618,19 +620,21 @@ body {
 
 .search {
   display: flex;
-  padding:   10px 14px;
+  padding: 10px 14px;
   border-radius: 28px;
   background: #25262b;
   cursor: text;
-  width: 100%;
+  width: auto;
   box-shadow:
     0 10px 15px rgba(0, 0, 0, 0.6),
     inset 0 0 2px rgba(255, 255, 255, 0.1);
   max-width: 350px;
   position: relative;
   margin-left: 20px;
+  margin-top: 20px;
   margin-bottom: 20px;
-  z-index: 10 ;
+  z-index: 10;
+  background-color: #1a062ca2;
 }
 
 .search:focus-within {
@@ -638,25 +642,25 @@ body {
 }
 
 .search .search-icon {
-  color: #7a7d87;
+  color: #bdbfc6;
   font-size: 20px;
   cursor: pointer;
   /* align-items: center;
   justify-content: center; */
   margin-right: 8px;
-  flex-shrink: 0; /* Prevent icon from shrinking */
-  transform: translateY(8px);
+  flex-shrink: 0;
+  /* Prevent icon from shrinking */
+  /* transform: translateY(8px); */
 }
 
 .search .search-input {
-  width: 100%;
+  width: auto;
   height: auto;
-  transform: translateX(35px) translateY(-15px);
-
+  /* transform: translateX(35px) translateY(-15px); */
   /* padding: 8px 12px; */
   border: none;
   background: transparent;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.842);
   font-size: 14px;
   font-family: "Arial", sans-serif;
   outline: none;
@@ -665,8 +669,9 @@ body {
 }
 
 .search .search-input::placeholder {
-  color: #7a7d87;
+  color: #bdbfc6;
   opacity: 0.7;
+  width: auto;
 }
 
 .search:hover {
@@ -686,7 +691,7 @@ body {
   margin-right: 35px;
 }
 
-.Friends_Container .Friends_Container_Title {
+/* .Friends_Container .Friends_Container_Title {
   transform: translateX(10%) translateY(35%);
   font-family: "Montserrat", sans-serif;
   font-size: 25px;
@@ -696,17 +701,17 @@ body {
   display: inline-block;  
   border-right: 3px solid;
   /* border-image: linear-gradient(90deg, #ff8f7e, #ffd867, #ec526b); */
-  white-space: nowrap;
+/* white-space: nowrap;
   overflow: hidden;
   width: 20%;
   animation:
     typing 2s infinite,
     cursor .4s step-end infinite alternate,
     border-glow 2s linear infinite;
-}
+} */
 
 
-@keyframes cursor {
+/* @keyframes cursor {
   80% {
     border-color: transparent;
   }
@@ -736,10 +741,10 @@ body {
   100% {
     border-right-color: #ec526b;
   }
-}
+}  */
 
 
-/* From Uiverse.io by andrei0x309 */ 
+/* From Uiverse.io by andrei0x309 */
 .profile {
   display: list-item;
   flex-direction: column;
@@ -763,7 +768,7 @@ body {
 .value {
   background-color: transparent;
   border: none;
-  margin-top:40%;
+  margin-top: 40%;
   padding: 10px;
   color: aliceblue;
   display: flex;
@@ -812,15 +817,22 @@ body {
   width: 15px;
   margin-top: 1px;
 }
-/* From Uiverse.io by Siyu1017 */ 
+
+/* From Uiverse.io by Siyu1017 */
 .friend_card {
-  width: 90%; /* Set percentage width to fit container */
-  height: auto; /* Let height adjust to content */
-  margin: 10px auto; /* Center horizontally with space above/below */
-  position: relative; /* Establish positioning context */
-  overflow-y: auto; /* Allow scrolling if content is too tall */
-  max-height: 75%; /* Limit height to prevent overflow */
+  width: auto;
+  /* Set percentage width to fit container */
+  height: 450px;
+  /* Let height adjust to content */
+  margin: 10px auto;
+  /* Center horizontally with space above/below */
+  position: relative;
+  /* Establish positioning context */
+  /* Allow scrolling if content is too tall */
+  /* max-height: 75%; Limit height to prevent overflow */
   -webkit-user-drag: none;
+  overflow: hidden;
+  overflow-y: auto;
   font-family:
     ui-sans-serif,
     system-ui,
@@ -838,18 +850,28 @@ body {
     Segoe UI Emoji,
     Segoe UI Symbol,
     Noto Color emoji;
-  overflow: hidden;
   --delay: 150ms;
+  z-index: 11;
+}
+
+.friend_card::-webkit-scrollbar {
+  width: 10px;
+}
+
+.friend_card::-webkit-scrollbar-thumb {
+  background-color: #d0cbff;
 }
 
 .friend_card .friend_messages {
-  margin: auto;
-  width: 380px;
+  width: auto;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
 }
 
 .friend_card .friend_message {
   background: rgba(115, 14, 255, 0.59);
-  width: 340px;
+  width: auto;
   border: 1.5px solid rgba(0, 0, 0, 0.08);
   border-radius: 0.5rem;
   padding: 1rem 1.25rem;
@@ -857,19 +879,19 @@ body {
   display: flex;
   gap: 1rem;
   position: relative;
-  transform: scale(0);
   height: 0;
   box-shadow: 0px 4px 16px 8px rgba(0, 0, 0, 0.03);
   animation: show-message 200ms forwards;
   transform-origin: top center;
   opacity: 0;
   transition: all 0.2s ease-in-out;
-  cursor: pointer ;
+  cursor: pointer;
+  z-index: 12;
 }
 
 .friend_message:hover {
   box-shadow: 0px 3px 16px 8px rgba(0, 0, 0, 0.07);
-  transform: translateY(-2px) scale(1.1);
+  transform: scale(1.8);
 }
 
 .friend_message-icon {
@@ -956,8 +978,10 @@ body {
   0% {
     transform: scale(0);
     margin-bottom: 0;
-    opacity: 0; /* Ensures it's hidden but still interactive */
+    opacity: 0;
+    /* Ensures it's hidden but still interactive */
   }
+
   100% {
     transform: scale(1);
     height: 100%;

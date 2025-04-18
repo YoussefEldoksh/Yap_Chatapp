@@ -28,6 +28,19 @@ def handle_disconnect():
 def home():
     return render_template("index.html")
 
+@views.route('/profile', methods =['GET','POST'])
+def profile():
+    return render_template("friendProfile.html")
+
+
+
+@views.route('/myprofile', methods =['GET','POST'])
+def myprofile():
+    return render_template("myprofile.html")
+
+
+
+
 @socketio.on("private_message")
 def handle_private_message(data):
     """Handles messages and sends them only to the intended recipient."""
@@ -43,8 +56,8 @@ def handle_private_message(data):
     builder = Message_Builder()
     new_message = builder.set_Text(message_text).set_From(current_user.id).set_To(recipient_id).build()
 
-    database.session.add(new_message)
-    database.session.commit()
+    # database.session.add(new_message)
+    # database.session.commit()
 
     message_data = {
         "text": new_message.text,
@@ -62,3 +75,5 @@ def handle_private_message(data):
 
     # Also send the message back to the sender's UI
     emit("private_message", message_data, room=request.sid)
+
+    

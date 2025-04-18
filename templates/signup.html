@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <meta charset="UTF-8">
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/Signin_Style.css') }}">
-      <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/send.png') }}">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    </head>
-    <body>
-      
-         <div class="login">
-            <div class="form">
-              <h2>Welcome, We Missed You!</h2>
-              <form method="POST" >
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="text" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <input type="submit" value="Sign Up" class="submit">
-            </form>
-            </div>
-          </div>
-  
-          {% with messages = get_flashed_messages(with_categories=true)%} 
-            {%if messages%}
-              {% for message in messages%}
-                {{message}}
-                
-              {%endfor%}
-            {%endif%}
-          {%endwith%} 
-  
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/Signin_Style.css') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/send.png') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+  <div class="login">
+    <div class="form">
+      <h2>Welcome, We Missed You!</h2>
+      <form method="POST">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="text" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" value="Sign Up" class="submit">
+      </form>
+      <form method="GET" action="{{ url_for('auth.login') }}" id="signup_redirect">
+        <input type="submit" value="Sign in" class="goto">
+      </form>
+    </div>
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true)%}
+  {%if messages%}
+  {% for message in messages%}
+  {{message}}
+
+  {%endfor%}
+  {%endif%}
+  {%endwith%}
+
+</body>
+
 </html>

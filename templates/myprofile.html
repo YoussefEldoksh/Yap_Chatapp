@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/send.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/myprofile.css') }}">
+
+    <title>My Profile</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+</head>
+
+<body>
+
+    <div class="profilePicContainer">
+        <form method="GET">
+            <div class="profilePic">
+                <img src="https://api.dicebear.com/9.x/personas/svg?seed=Robert&radius=50&backgroundColor=d1d4f9,c0aede"
+                    alt="avatar" />
+            </div>
+        </form>
+        <form method="GET">
+            <div class="Username">
+                <h3>
+                    Youssef Eldoksh
+                </h3>
+            </div>
+        </form>
+        <form method="POST">
+            <div class="updateProfilePicButton">
+                <button class="uiverse">
+                    <div class="wrapper">
+                        <span>Update Pic!</span>
+                        <div class="circle circle-12"></div>
+                        <div class="circle circle-11"></div>
+                        <div class="circle circle-10"></div>
+                        <div class="circle circle-9"></div>
+                        <div class="circle circle-8"></div>
+                        <div class="circle circle-7"></div>
+                        <div class="circle circle-6"></div>
+                        <div class="circle circle-5"></div>
+                        <div class="circle circle-4"></div>
+                        <div class="circle circle-3"></div>
+                        <div class="circle circle-2"></div>
+                        <div class="circle circle-1"></div>
+                    </div>
+                </button>
+            </div>
+        </form>
+
+    </div>
+
+    <!-- <div class="InfoContainer">
+        <div class="brutalist-container">
+            <input placeholder="TYPE HERE" class="brutalist-input smooth-type" type="text" />
+            <label class="brutalist-label">Username</label>
+        </div>
+
+
+    </div> -->
+
+    <div class="animated-bg"></div>
+
+</body>
+
+</html>
