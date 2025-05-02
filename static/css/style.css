@@ -619,8 +619,8 @@ body {
 }
 
 .search {
-  display: flex;
-  padding: 10px 14px;
+  display: inline-block;
+  padding: 1em;
   border-radius: 28px;
   background: #25262b;
   cursor: text;
@@ -630,9 +630,8 @@ body {
     inset 0 0 2px rgba(255, 255, 255, 0.1);
   max-width: 350px;
   position: relative;
-  margin-left: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px;
+
   z-index: 10;
   background-color: #1a062ca2;
 }
@@ -651,13 +650,12 @@ body {
   flex-shrink: 0;
   /* Prevent icon from shrinking */
   /* transform: translateY(8px); */
+  display: inline;
 }
 
 .search .search-input {
-  width: auto;
-  height: auto;
-  /* transform: translateX(35px) translateY(-15px); */
-  /* padding: 8px 12px; */
+  width: 22em;
+  display: inline;
   border: none;
   background: transparent;
   color: rgba(255, 255, 255, 0.842);
@@ -665,13 +663,15 @@ body {
   font-family: "Arial", sans-serif;
   outline: none;
   cursor: text;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s ease;
+  transform: 0.3s ease;
 }
 
 .search .search-input::placeholder {
   color: #bdbfc6;
   opacity: 0.7;
   width: auto;
+
 }
 
 .search:hover {
@@ -744,7 +744,6 @@ body {
 }  */
 
 
-/* From Uiverse.io by andrei0x309 */
 .profile {
   display: list-item;
   flex-direction: column;
@@ -773,6 +772,7 @@ body {
   color: aliceblue;
   display: flex;
   position: relative;
+  z-index: 11;
   gap: 5px;
   cursor: pointer;
   border-radius: 4px;

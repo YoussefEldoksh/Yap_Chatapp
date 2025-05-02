@@ -5,19 +5,20 @@ html {
     padding: 0;
     height: 100%;
     overflow: hidden;
+    z-index: -1;
 }
+
 
 .animated-bg {
     position: absolute;
     top: 0;
     left: 0;
-    width: 300%;
-    height: 300%;
+    width: 200%;
+    height: 200%;
     background: url('../images/send.png') repeat;
     background-size: 10%;
     animation: move-diagonal 52s linear infinite;
     z-index: 0;
-
 }
 
 @keyframes move-diagonal {
@@ -30,22 +31,28 @@ html {
     }
 }
 
-.profilePicContainer .Username {
+
+
+.profilecontainer .Username {
     z-index: 1;
 }
 
-.profilePicContainer {
+.profilecontainer {
     background-color: rgba(17, 17, 173, 0.781);
-    width: 15em;
+    width: 67em;
     min-height: 38em;
     border-radius: 10%;
-    margin-left: 2.5em;
-    margin-right: 2.5em;
+    margin: auto auto;
     margin-top: 2em;
-    z-index: 15;
+    box-shadow:
+        10px 40px 100px 20px rgba(0, 0, 0, 0.7),
+        0 -40px 80px rgba(102, 106, 135, 0.3);
+    z-index: 1;
+    position: relative;
+
 }
 
-.profilePicContainer .profilePic {
+.profilecontainer .profilePic {
 
     width: 7em;
     height: 7em;
@@ -54,208 +61,112 @@ html {
 
 }
 
-/* From Uiverse.io by 0xnihilism */
-.brutalist-container {
+
+.form-control .username_form {
+    display: inline-block;
     position: relative;
-    width: 250px;
-    font-family: monospace;
+    font-family: 'Poppins', sans-serif;
+    margin: 1em 5em;
+    width: 12em
 }
 
-.brutalist-input {
+.form-control .email_form {
+    display: inline-block;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    margin: 1em 3em;
+    width: 18em
+}
+
+.form-control .password_form {
+    display: inline-block;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    margin: 1em 2em;
+    width: 12em;
+}
+
+.form-control .bio_form {
+    display: inline-block;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    margin: 6em 4.8em;
+    width: 28em;
+}
+
+.form-control input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px #fff solid;
+    display: block;
     width: 100%;
-    padding: 15px;
+    padding: 15px 0;
     font-size: 18px;
-    font-weight: bold;
-    color: #000;
-    background-color: #fff;
-    border: 4px solid #000;
-    position: relative;
-    overflow: hidden;
-    border-radius: 0;
-    outline: none;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 5px 5px 0 #000, 10px 10px 0 #4a90e2;
-}
-
-@keyframes glitch {
-    0% {
-        transform: translate(0);
-    }
-
-    20% {
-        transform: translate(-2px, 2px);
-    }
-
-    40% {
-        transform: translate(-2px, -2px);
-    }
-
-    60% {
-        transform: translate(2px, 2px);
-    }
-
-    80% {
-        transform: translate(2px, -2px);
-    }
-
-    100% {
-        transform: translate(0);
-    }
-}
-
-.brutalist-input:focus {
-    animation: focus-pulse 4s cubic-bezier(0.25, 0.8, 0.25, 1) infinite,
-        glitch 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
-}
-
-.brutalist-input:focus::after {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: white;
-    z-index: -1;
-}
-
-.brutalist-input:focus::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: black;
-    z-index: -2;
-    clip-path: inset(0 100% 0 0);
-    animation: glitch-slice 4s steps(2, end) infinite;
-}
-
-@keyframes glitch-slice {
-    0% {
-        clip-path: inset(0 100% 0 0);
-    }
-
-    10% {
-        clip-path: inset(0 5% 0 0);
-    }
-
-    20% {
-        clip-path: inset(0 80% 0 0);
-    }
-
-    30% {
-        clip-path: inset(0 10% 0 0);
-    }
-
-    40% {
-        clip-path: inset(0 50% 0 0);
-    }
-
-    50% {
-        clip-path: inset(0 30% 0 0);
-    }
-
-    60% {
-        clip-path: inset(0 70% 0 0);
-    }
-
-    70% {
-        clip-path: inset(0 15% 0 0);
-    }
-
-    80% {
-        clip-path: inset(0 90% 0 0);
-    }
-
-    90% {
-        clip-path: inset(0 5% 0 0);
-    }
-
-    100% {
-        clip-path: inset(0 100% 0 0);
-    }
-}
-
-.brutalist-label {
-    position: absolute;
-    left: -3px;
-    top: -35px;
-    font-size: 14px;
-    font-weight: bold;
     color: #fff;
-    background-color: #000;
-    padding: 5px 10px;
-    transform: rotate(-1deg);
-    z-index: 1;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.brutalist-input:focus+.brutalist-label {
-    transform: rotate(0deg) scale(1.05);
-    background-color: #4a90e2;
+.form-control .bio_form .bioform {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px #fff solid;
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    font-size: 16px;
+    color: #fff;
 }
 
-.smooth-type {
-    position: relative;
-    overflow: hidden;
-}
 
-.smooth-type::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.smooth-type:focus::before {
-    opacity: 1;
-    animation: type-gradient 2s linear infinite;
-}
-
-@keyframes type-gradient {
-    0% {
-        background-position: 300px 0;
-    }
-
-    100% {
-        background-position: 0 0;
-    }
-}
-
-.brutalist-input::placeholder {
-    color: #888;
-    transition: color 0.3s ease;
-}
-
-.brutalist-input:focus::placeholder {
+.form-control input::placeholder {
     color: transparent;
+    transition: color 0.8s ease;
 }
 
-.brutalist-input:focus {
-    animation: focus-pulse 4s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+.form-control input:focus::placeholder {
+    color: #aaa;
+    /* or whatever visible color you want */
 }
 
-@keyframes focus-pulse {
-
-    0%,
-    100% {
-        border-color: #000;
-    }
-
-    50% {
-        border-color: #4a90e2;
-    }
+.form-control input:focus,
+.form-control input:valid {
+    outline: 0;
+    border-bottom-color: lightblue;
 }
 
-/* From Uiverse.io by Ashon-G */
+.form-control label {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    pointer-events: none;
+}
+
+.form-control label span {
+    display: inline-block;
+    font-size: 18px;
+    min-width: 5px;
+    color: #fff;
+    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.form-control input:focus+label span,
+.form-control input:valid+label span {
+    color: lightblue;
+    transform: translateY(-30px);
+}
+
+
+.form-control input:focus+label span,
+.form-control input:valid+label span {
+    color: lightblue;
+    transform: translateY(-30px);
+}
+
+.form-control .bioform:focus+.bioform_label span,
+.form-control .bioform:valid+.bioform_label span {
+    color: lightblue;
+    transform: translateY(-80px);
+}
+
 .uiverse {
     --duration: 7s;
     --easing: linear;
@@ -278,7 +189,7 @@ html {
     display: table;
     border-radius: 24px;
     padding: 0;
-    margin: auto auto;
+    margin: 2em auto;
     text-align: center;
     font-weight: 600;
     font-size: 16px;
