@@ -40,7 +40,7 @@ html {
 .profilecontainer {
     background-color: rgba(17, 17, 173, 0.781);
     width: 67em;
-    min-height: 38em;
+    height: 39em;
     border-radius: 10%;
     margin: auto auto;
     margin-top: 2em;
@@ -67,7 +67,7 @@ html {
     position: relative;
     font-family: 'Poppins', sans-serif;
     margin: 1em 5em;
-    width: 12em
+    width: 12em;
 }
 
 .form-control .email_form {
@@ -75,7 +75,7 @@ html {
     position: relative;
     font-family: 'Poppins', sans-serif;
     margin: 1em 3em;
-    width: 18em
+    width: 18em;
 }
 
 .form-control .password_form {
@@ -105,18 +105,6 @@ html {
     color: #fff;
 }
 
-.form-control .bio_form .bioform {
-    background-color: transparent;
-    border: 0;
-    border-bottom: 2px #fff solid;
-    display: block;
-    width: 100%;
-    padding: 15px 0;
-    font-size: 16px;
-    color: #fff;
-}
-
-
 .form-control input::placeholder {
     color: transparent;
     transition: color 0.8s ease;
@@ -124,7 +112,6 @@ html {
 
 .form-control input:focus::placeholder {
     color: #aaa;
-    /* or whatever visible color you want */
 }
 
 .form-control input:focus,
@@ -154,17 +141,33 @@ html {
     transform: translateY(-30px);
 }
 
-
-.form-control input:focus+label span,
-.form-control input:valid+label span {
-    color: lightblue;
-    transform: translateY(-30px);
-}
-
 .form-control .bioform:focus+.bioform_label span,
 .form-control .bioform:valid+.bioform_label span {
     color: lightblue;
     transform: translateY(-80px);
+}
+
+.form-control .bio_form .about {
+    opacity: 0;
+    transform: translateY(-90px);
+    color: #aaa;
+    /* display: none; */
+    margin-top: 10px;
+    transition: opacity 0.5s ease;
+}
+
+.form-control .bio_form .bioform:focus~.about {
+    opacity: 1;
+    display: inline-block;
+    color: #aaa;
+    font-family: 'Poppins', sans-serif;
+    transform: translateY(-90px);
+    transition: opacity 0.8s ease, transform 0.1s ease;
+
+}
+
+.form-control .bio_form .bioform {
+    caret-color: transparent;
 }
 
 .uiverse {

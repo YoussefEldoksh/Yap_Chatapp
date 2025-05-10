@@ -30,7 +30,18 @@ def home():
 
 @views.route('/profile', methods =['GET','POST'])
 def profile():
-    return render_template("friendProfile.html")
+    is_authenticated = True  # Example: Check session, token, etc.
+
+    if is_authenticated:
+        return jsonify({
+            'success': True,
+            'redirectUrl': '/profile'  # URL or path to profile page
+        })
+    else:
+        return jsonify({
+            'success': False,
+            'message': 'Please log in to access the profile page'
+        }), 401
 
 
 
